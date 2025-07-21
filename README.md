@@ -1,79 +1,151 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Hppw7Zh2)
-# Trabalho Final
+# SimpleLang - Um Interpretador para Linguagem Simples
 
-## Escopo e organização
+## Integrantes
 
-O trabalho é de tema livre dentro do escopo da disciplina de compiladores e
-consiste no desenvolvimento de alguma aplicação na área da disciplina (um
-interpretador para uma linguagem simples, compilador, analisadores de código,
-etc.)
+- Arthur Henrique Vieira - 231034064
+- Gabriel Soares dos Anjos - 2310266625
 
-O trabalho pode ser feito em grupos de até 4 pessoas.
+## Introdução
 
-## Estrutura
+Este projeto consiste na implementação de um interpretador para **SimpleLang**, uma linguagem de programação simples, dinamicamente tipada, com sintaxe inspirada em linguagens como Python e JavaScript. O objetivo principal foi desenvolver um compilador/interpretador completo, abordando as principais fases de um processo de compilação: análise léxica, análise sintática, construção da Árvore Sintática Abstrata (AST), análise semântica e execução em tempo de execução (runtime).
 
-Os trabalhos devem ser entregues na atividade própria no [github-classrrom](...).
-Cada repositório deve ter uma estrutura parecida com a delineada abaixo:
+SimpleLang foi projetada para ser didática, permitindo a exploração de conceitos fundamentais de linguagens de programação, como declaração de variáveis, estruturas de controle de fluxo (condicionais `if-else`, laços `while` e `for`), definição e chamada de funções (incluindo recursividade), e operações básicas com tipos de dados numéricos, booleanos e strings. A linguagem também incorpora um sistema de tratamento de erros robusto para auxiliar no desenvolvimento e depuração de programas.
 
-* **README:** o arquivo README.md na base do repositório deve descrever os
-  detalhes da implementação do código. O README deve ter algumas seções 
-  obrigatórias:
-  - **Título**: nome do projeto
-  - **Integrantes**: lista com os nomes, matrículas e turma de cada integrante.
-  - **Introdução**: deve detalhar o que o projeto implementou, quais foram as
-    estratégias e algoritmos relevantes. Se o projeto implementa uma linguagem
-    não-comum ou um subconjunto de uma linguagem comum, deve conter alguns
-    exemplos de comandos nesta linguagem, descrendo a sua sintaxe e semântica,
-    quando necessário.
-  - **Instalação**: deve detalhar os passos para instalar as dependências e
-    rodar o código do projeto. Pode ser algo simples como *"Rode
-    `uv run lox hello.lox` para executar o interpretador."*, se a linguagem de
-    implementação permitir este tipo de facilidade.
+## Instalação
 
-    Você pode usar gerenciadores de pacotes específicos de linguagens populares
-    como uv, npm, cargo, etc, containers Docker/Podman, ou `.nix`.
-  - **Exemplos**: o projeto deve conter uma pasta "exemplos" com alguns arquivos
-    na linguagem de programação implementada. Deve conter exemplos com graus
-    variáveis de complexidade. Algo como: hello world, fibonacci, função
-    recursiva, alguma estrutura de dados e para finalizar um algoritmo um pouco
-    mais elaborado como ordenamento de listas, busca binária, etc.
-    
-    Note que isto é apenas um guia da ordem de dificuldade dos problemas.
-    Algumas linguagens sequer permitem a implementação de alguns dos exemplos
-    acima.
-  - **Referências**: descreva as referências que você utilizou para a
-    implementação da linguagem. Faça uma breve descrição do papel de cada
-    referência ou como ela foi usada no projeto. Caso você tenha usado algum 
-    código existente como referência, descreva as suas contribuições originais
-    para o projeto.
-  - **Estrutura do código**: faça uma descrição da estrutura geral do código
-    discutindo os módulos, classes, estruturas de dados ou funções principais. 
-    Explicite onde as etapas tradicionais de compilação (análise léxica, 
-    sintática, semântica, etc) são realizadas, quando relevante.
-  - **Bugs/Limitações/problemas conhecidos**: discuta as limitações do seu
-    projeto e problemas conhecidos e coisas que poderiam ser feitas para
-    melhorá-lo no futuro. Note: considere apenas melhorias incrementais e não
-    melhorias grandes como: "reimplementar tudo em Rust".
-* **Código:** O codigo fonte deve estar presente no repositório principal junto com
-  a declaração das suas dependências. Cada linguagem possui um mecanismo
-  específico para isso, mas seria algo como o arquivo pyproject.toml em Python
-  ou package.json no caso de Javascript.
+Para instalar e rodar o interpretador SimpleLang, siga os passos abaixo:
 
-## Critérios
+1.  **Clone o repositório:**
 
-Cada trabalho começa com 100% e pode receber penalizações ou bônus de acordo com
-os critérios abaixo:
+    ```bash
+    git clone <URL_DO_REPOSITORIO>
+    cd <nome_do_diretorio_do_repositorio>
+    ```
 
-- Ausência do README: -50%
-- Instruções de instalação não funcionam: até -20%
-- Referências não atribuídas ou falta de referâncias: -10%
-- Código confuso ou mal organizado: até -15%
-- Falta de clareza em apresentar as técnicas e etapas de compilação: -15%
-- Bugs e limitações sérias na implementação: até -25%
-- Escopo reduzido, ou implementação insuficiente: até 25%
-- Uso de código não atribuído/plágio: até -100%
-- Repositório bem estruturado e organizado: até 10%
-- Linguagem com conceitos originais/interessantes: até +15%
-- Testes unitários: até +15%, dependendo da cobertura
+2.  **Instale as dependências:**
 
-Após aplicar todos os bônus, a nota é truncada no intervalo 0-100%. 
+    O projeto utiliza a biblioteca `lark` para a análise léxica e sintática. Você pode instalá-la usando `pip`:
+
+    ```bash
+    pip install lark
+    ```
+
+3.  **Executando o Interpretador:**
+
+    Você pode executar um arquivo SimpleLang diretamente ou iniciar o REPL (Read-Eval-Print Loop) da linguagem.
+
+    *   **Executar um arquivo:**
+
+        ```bash
+        python -m lox <caminho_do_arquivo.sl>
+        ```
+
+        Exemplo:
+
+        ```bash
+        python -m lox examples/hello_world.sl
+        ```
+
+    *   **Iniciar o REPL:**
+
+        ```bash
+        python -m lox
+        ```
+
+        No REPL, você pode digitar comandos SimpleLang e ver o resultado imediatamente.
+
+        ```
+        >>> var x = 10;
+        >>> print x + 5;
+        15
+        >>> fun greet(name) { print "Hello, " + name + "!"; }
+        >>> greet("SimpleLang");
+        Hello, SimpleLang!
+        ```
+
+## Exemplos
+
+A pasta `examples/` (a ser criada) conterá diversos exemplos de programas escritos em SimpleLang, demonstrando as funcionalidades da linguagem. Abaixo, alguns exemplos notáveis:
+
+### Hello World
+
+```simplelang
+print "Hello, World!";
+```
+
+### Fibonacci Recursivo
+
+```simplelang
+fun fib(n) {
+    if (n <= 1) {
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+print "Fibonacci(10): " + fib(10);
+```
+
+### Fatorial
+
+```simplelang
+fun factorial(n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+print "Fatorial de 5: " + factorial(5);
+```
+
+## Referências
+
+Este projeto foi fortemente inspirado e baseado nos conceitos e na estrutura de compiladores e interpretadores, com particular atenção às seguintes referências:
+
+-   **Crafting Interpreters** por Robert Nystrom [1]: Uma excelente e didática obra que aborda a construção de um interpretador completo do zero, utilizando a linguagem Lox como exemplo. Muitos dos padrões de design (como o padrão Visitor para a AST) e a organização geral do interpretador foram influenciados por este livro.
+    -   [1] Nystrom, Robert. *Crafting Interpreters*. Disponível em: [https://craftinginterpreters.com/](https://craftinginterpreters.com/)
+
+-   **Lark - um parser para Python** [2]: A biblioteca Lark foi utilizada para a geração do analisador léxico e sintático (parser) a partir da gramática da SimpleLang. Sua flexibilidade e facilidade de uso foram cruciais para a fase de parsing do projeto.
+    -   [2] Lark. *Lark - a parsing library for Python*. Disponível em: [https://lark-parser.readthedocs.io/en/latest/](https://lark-parser.readthedocs.io/en/latest/)
+
+## Estrutura do Código
+
+O projeto está organizado na seguinte estrutura de diretórios e arquivos:
+
+```
+. (raiz do repositório)
+├── lox/
+│   ├── ast.py             # Definição das classes de nós da Árvore Sintática Abstrata (AST).
+│   ├── cli.py             # Interface de linha de comando (CLI) para o interpretador.
+│   ├── ctx.py             # Gerenciamento de contexto e escopo (variáveis, funções).
+│   ├── errors.py          # Definição de classes de exceção para erros da SimpleLang.
+│   ├── grammar.lark       # Gramática da SimpleLang definida em formato Lark.
+│   ├── __init__.py        # Inicialização do pacote Python.
+│   ├── __main__.py        # Ponto de entrada para execução via `python -m lox`.
+│   ├── node.py            # Classes base para os nós da AST (Expressões e Statements).
+│   ├── parser.py          # Analisador léxico e sintático, utiliza Lark para parsing.
+│   ├── runtime.py         # Interpretador principal, percorre a AST e executa o código.
+│   ├── testing.py         # Módulo de testes unitários para o interpretador.
+│   └── transformer.py     # Converte a árvore de parsing do Lark em AST.
+├── pyproject.toml         # Configurações do projeto Python (dependências, etc.).
+├── pytest.ini             # Configurações para o Pytest (framework de testes).
+├── README.md              # Este arquivo.
+└── tests/                 # Diretório para testes adicionais (não implementado neste escopo).
+```
+
+### Etapas de Compilação e Onde São Realizadas
+
+1.  **Análise Léxica e Sintática:** Realizada pelo módulo `parser.py`, que utiliza a gramática definida em `grammar.lark` e a biblioteca `lark`. O `parser.py` transforma o código fonte em uma árvore de parsing.
+2.  **Construção da Árvore Sintática Abstrata (AST):** O módulo `transformer.py` atua como um transformador da árvore de parsing gerada pelo Lark, convertendo-a em uma estrutura de AST mais limpa e hierárquica, utilizando as classes de nós definidas em `node.py`.
+3.  **Análise Semântica e Gerenciamento de Contexto:** O módulo `ctx.py` é responsável por gerenciar os ambientes (escopos) de variáveis e funções. Durante a execução (`runtime.py`), a resolução de nomes e a verificação de tipos (implícita, devido à tipagem dinâmica) são realizadas com base no contexto atual. Erros semânticos, como variáveis não declaradas ou aridade incorreta de funções, são detectados e reportados via `errors.py`.
+4.  **Execução (Interpretação):** O `runtime.py` é o coração do interpretador. Ele percorre a AST (utilizando o padrão Visitor) e executa as operações correspondentes a cada nó. Isso inclui avaliação de expressões, execução de statements de controle de fluxo e chamadas de função.
+
+## Bugs/Limitações/Problemas Conhecidos
+
+-   **Tratamento de Erros de Runtime:** Embora exista um módulo `errors.py` para tratamento de erros, a granularidade das mensagens de erro de runtime pode ser melhorada para incluir informações mais precisas sobre a linha e coluna do erro em todos os casos.
+-   **Otimização:** O interpretador atual não realiza otimizações de código. Para programas muito grandes ou complexos, o desempenho pode ser um fator limitante. Uma futura melhoria poderia incluir uma fase de otimização da AST ou a geração de bytecode.
+-   **Tipagem:** SimpleLang é dinamicamente tipada. A adição de um sistema de tipos estático ou inferência de tipos poderia melhorar a detecção de erros em tempo de compilação e a robustez do código.
+-   **Recursos da Linguagem:** A linguagem é intencionalmente simples. Recursos mais avançados, como classes, objetos, módulos, tratamento de exceções (além do `return`), e estruturas de dados mais complexas (listas, dicionários nativos), não estão implementados. A extensão da gramática e do interpretador para suportar esses recursos seria uma evolução natural.
+-   **REPL:** O REPL atual tem uma limitação na forma como lida com expressões que não são statements completos. Embora tente inferir, pode haver casos onde a entrada não é interpretada corretamente sem um `;` final ou se for uma expressão complexa que não se encaixa nas regras de statement.
+-   **Testes:** Embora exista um módulo `testing.py` com testes unitários básicos, a cobertura de testes pode ser expandida significativamente para garantir a robustez de todas as funcionalidades e cenários de erro.
+
+

@@ -1,0 +1,75 @@
+// Gramática para SimpleLang - Uma linguagem de programação simples
+// Inspirada em Lox mas com algumas extensões interessantes
+
+?start: program
+
+program: statement*
+
+?statement: expression_stmt
+          | var_declaration
+          | function_declaration
+          | if_statement
+          | while_statement
+          | for_statement
+          | return_statement
+          | block_statement
+          | print_statement
+
+// Declarações
+var_declaration: "var" IDENTIFIER ("=" expression)? ";"
+function_declaration: "fun" IDENTIFIER "(" parameters? ")" block_statement
+parameters: IDENTIFIER ("," IDENTIFIER)*
+
+// Statements de controle
+if_statement: "if" "(" expression ")" statement ("else" statement)?
+while_statement: "while" "(" expression ")" statement
+for_statement: "for" "(" (var_declaration | expression_stmt | ";") expression? ";" expression? ")" statement
+return_statement: "return" expression? ";"
+block_statement: "{" statement* "}"
+print_statement: "print" expression ";"
+expression_stmt: expression ";"
+
+// Expressões (precedência da menor para maior)
+?expression: assignment
+
+?assignment: IDENTIFIER "=" assignment
+           | logical_or
+
+?logical_or: logical_and ("or" logical_and)*
+
+?logical_and: equality ("and" equality)*
+
+?equality: comparison (("!=" | "==") comparison)*
+
+?comparison: term ((">" | ">=" | "<" | "<=") term)*
+
+?term: factor (("-" | "+") factor)*
+
+?factor: unary (("/" | "*" | "%") unary)*
+
+?unary: ("!" | "-") unary
+      | call
+
+?call: primary ("(" arguments? ")")*
+
+?arguments: expression ("," expression)*
+
+?primary: "true"             -> true
+        | "false"            -> false
+        | "nil"              -> nil
+        | NUMBER             -> number
+        | STRING             -> string
+        | IDENTIFIER         -> identifier
+        | "(" expression ")" -> grouping
+
+// Tokens
+IDENTIFIER: /[a-zA-Z_][a-zA-Z0-9_]*/
+NUMBER: /\d+(\.\d+)?/
+STRING: /"([^"\\]|\\.)*"/
+
+// Comentários e espaços em branco
+COMMENT: "//" /[^\n]*/
+%import common.WS
+%ignore WS
+%ignore COMMENT
+
