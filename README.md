@@ -4,6 +4,8 @@
 
 - Arthur Henrique Vieira - 231034064
 - Gabriel Soares dos Anjos - 2310266625
+- Mylena Trindade de Mendonca - 231035769
+- Cibelly Lourenco Ferreira - 231026680
 
 ## Introdução
 
