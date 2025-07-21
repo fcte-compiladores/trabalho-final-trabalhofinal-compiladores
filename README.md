@@ -20,8 +20,8 @@ Para instalar e rodar o interpretador SimpleLang, siga os passos abaixo:
 1.  **Clone o repositório:**
 
     ```bash
-    git clone <URL_DO_REPOSITORIO>
-    cd <nome_do_diretorio_do_repositorio>
+    git clone https://github.com/fcte-compiladores/trabalho-final-trabalhofinal-compiladores
+    cd https://github.com/fcte-compiladores/trabalho-final-trabalhofinal-compiladores
     ```
 
 2.  **Instale as dependências:**
